@@ -78,7 +78,7 @@ const ResponsiveMenu = ({ open, setOpen }) => {
 
           <div className="md:flex flex-col space-y-4 md:mt-12 mt-8">
             {socialIcons.map((Icon, i) => (
-              <div key={i} className="icon-circle">
+              <div key={i} className="icon-circle icon-circle-dark">
                 <Icon className="text-2xl" />
               </div>
             ))}
@@ -87,22 +87,22 @@ const ResponsiveMenu = ({ open, setOpen }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 text-lg md:text-xl uppercase mt-8 md:mt-12">
           <div>
-            <h3 className="mb-3 md:mb-4 font-semibold">Location</h3>
+            <h3 className="underline-slide underline-black mb-3 md:mb-4 font-semibold">Location</h3>
             <ul className="space-y-2 ">
               {locations.map((loc) => (
                 <li 
-                className="underline-slide cursor-pointer"
+                className="underline-slide underline-black cursor-pointer"
                 key={loc}>{loc}</li>
               ))}
             </ul>
           </div>
           
           <div>
-            <h3 className="mb-3 md:mb-4 font-semibold">Solutions</h3>
+            <h3 className="underline-slide underline-black mb-3 md:mb-4 font-semibold ">Solutions</h3>
             <ul className="space-y-2">
               {solutions.map((sol) => (
                 <li 
-                className="underline-slide cursor-pointer"
+                className="underline-slide underline-black cursor-pointer"
                 key={sol}>{sol}</li>
               ))}
             </ul>

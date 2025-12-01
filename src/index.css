@@ -2,7 +2,7 @@
 
 @layer base {
   html {
-    font-family: "Clash Grotesk", "Inter", sans-serif;
+    font-family: "Clash Display", "Inter", sans-serif;
     font-weight: 500;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -11,13 +11,13 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: "Clash Display", sans-serif;
-    font-weight: 500;
+    font-weight: 400;
   }
 }
 
-@font-face { font-family: "Clash Grotesk"; src: url("/src/assets/fonts/ClashGrotesk-Regular.woff") format("woff"); font-weight: 400; }
-@font-face { font-family: "Clash Grotesk"; src: url("/src/assets/fonts/ClashGrotesk-Medium.woff") format("woff"); font-weight: 500; }
-@font-face { font-family: "Clash Grotesk"; src: url("/src/assets/fonts/ClashGrotesk-Semibold.woff") format("woff"); font-weight: 600; }
+@font-face { font-family: "Clash Display"; src: url("/src/assets/fonts/ClashDisplay-Regular.woff") format("woff"); font-weight: 400; }
+@font-face { font-family: "Clash Display"; src: url("/src/assets/fonts/ClashDisplay-Medium.woff") format("woff"); font-weight: 500; }
+@font-face { font-family: "Clash Display"; src: url("/src/assets/fonts/ClashDisplay-Semibold.woff") format("woff"); font-weight: 600; }
 
 :root {
   --west-bg: #F1ECDC;
@@ -32,6 +32,31 @@ body {
   color: var(--west-bg-secondary);
 }
 
+@layer utilities {
+  .bg-bottom-overlay {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(31, 71, 62, 0) 0%,
+      rgba(31, 71, 62, 0.4) 40%,
+      rgba(31, 71, 62, 0.8) 70%,
+      rgba(31, 71, 62, 1) 100%
+    );
+  }
+}
+
+@layer utilities {
+  .bg-half-split {
+    background: linear-gradient(
+      to bottom,
+      var(--west-bg-secondary) 0%,
+      var(--west-bg-secondary) 50%,
+      var(--west-bg) 50%,
+      var(--west-bg) 100%
+    );
+  }
+}
+
+
 .h1 { font-size: 120px; letter-spacing: -0.02em; }
 .h2 { font-size: 80px; }
 .h3 { font-size: 64px; }
@@ -43,9 +68,6 @@ body {
 .body-regular { font-size: 20px; }
 
 .btn-regular {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   @apply md:flex justify-center items-center px-6 h-12 rounded-full gap-4 uppercase;
   font-size: 18px;
   font-weight: 500;
@@ -73,7 +95,6 @@ body {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: var(--west-bg-secondary);
   transition: width 0.3s ease-in-out;
 }
 
@@ -81,7 +102,15 @@ body {
   width: 100%;
 }
 
-/* Thicker underline for menu items */
+.underline-white::after {
+  background-color: #F1ECDC; /* for dark*/
+}
+
+.underline-black::after {
+  background-color: #1F473E; /* for light*/
+}
+
+/* Thicker underline */
 .underline-slide-thick::after {
   height: 3px;
   bottom: -6px;
@@ -92,9 +121,22 @@ body {
 }
 
 .icon-circle {
-  @apply w-14 h-14 rounded-full border flex items-center justify-center cursor-pointer;
+  @apply w-14 h-14 rounded-full border border-[#88998D] flex items-center justify-center cursor-pointer transition-all duration-300;
 }
 
+.icon-circle-light:hover {
+  @apply scale-95 bg-white;
+}
+.icon-circle-light:hover svg {
+  color: var(--west-bg-secondary);
+}
+
+.icon-circle-dark:hover {
+  @apply scale-95 bg-(--west-bg-secondary);
+}
+.icon-circle-dark:hover svg {
+  color: white;
+}
 
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 6px; }

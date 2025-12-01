@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { LuLeaf } from "react-icons/lu"; 
 import ResponsiveMenu from "./ResponsiveMenu";
 
 const Navbar = () => {
 const [open , setOpen] = useState(false)
+const [scrolled , setScrolled] = useState(false)
+
+const handleScroll = () => {
+  setScrolled(window.scrollY > 10);
+}
+
+useEffect(()=>{
+  window.addEventListener('scroll',handleScroll,{passive: true});
+  return () => window.removeEventListener('scroll',handleScroll);
+})
 
   return ( 
     <>
+    <nav className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md transition-all ${
+        scrolled ? " bg-(--west-bg)/80" : "bg-transparent"}`}>
       <div className="container py-2 flex justify-between items-center">
         
         <div className="flex items-center gap-3 cursor-pointer max-md:order-2">
@@ -21,17 +33,20 @@ const [open , setOpen] = useState(false)
           </p>
         </div>
 
-        <div className="flex items-center  gap-3">
-          <LuLeaf className="text-2xl" />
-          <p className="text-2xl">The Seed Hub</p>
+        <div className="flex md:items-center text-left md:ml-17  gap-3 text-3xl">
+          <LuLeaf />
+          <p>The Seed Hub</p>
         </div>
 
         <button className="hidden btn-regular">
           Book a tour
-          <span class="h-fit">→</span>
+          <span className="text-2xl">→</span>
         </button>
       </div>
-      <ResponsiveMenu open={open} setOpen={setOpen} />
+    </nav>
+
+    {open ? <ResponsiveMenu open={open} setOpen={setOpen} /> : null}
+
       </>
   );
 };
